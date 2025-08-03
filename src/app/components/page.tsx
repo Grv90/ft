@@ -8,6 +8,12 @@ import DatePickerInput from "../../components/DatePickerInput/DatePickerInput";
 import DropdownInput from "../../components/DropdownInput/DropdownInput";
 import TextInput from "../../components/TextInput/TextInput";
 import TextAreaInput from "../../components/TextAreaInput/TextAreaInput";
+import {
+  Table,
+  TableRow,
+  TableHeader,
+  TableCell,
+} from "../../components/Table";
 import Navbar from "../../components/Navbar/Navbar";
 import "../../components/Typography/Typography.scss";
 
@@ -476,6 +482,76 @@ export default function ComponentsPage() {
               <div>
                 <h3 className="font-medium text-gray-700 mb-2">No Timestamp</h3>
                 <PriceBox price="$19.99" />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-md p-8 mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+              Table Components
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="font-medium text-gray-700 mb-3">Table Cells</h3>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-sm text-gray-600 mb-2">Checkmark Cell</p>
+                    <TableCell type="checkmark" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600 mb-2">Price Cell</p>
+                    <TableCell type="price" value="$35,000" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600 mb-2">
+                      Price with Text
+                    </p>
+                    <TableCell
+                      type="price-with-text"
+                      price="$35,000"
+                      text="Text"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600 mb-2">Text Cell</p>
+                    <TableCell type="text" value="Text" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600 mb-2">X Mark Cell</p>
+                    <TableCell type="x-mark" />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-700 mb-3">
+                  Complete Table
+                </h3>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-sm text-gray-600 mb-2">Basic Table</p>
+                    <Table>
+                      <TableRow>
+                        <TableCell type="price" value="$35,000" />
+                        <TableCell type="price" value="$35,000" />
+                      </TableRow>
+                    </Table>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600 mb-2">
+                      Table with Header
+                    </p>
+                    <Table>
+                      <TableRow>
+                        <TableHeader>Header</TableHeader>
+                        <TableHeader>Header</TableHeader>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell type="price" value="$35,000" />
+                        <TableCell type="text" value="Text" />
+                      </TableRow>
+                    </Table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
