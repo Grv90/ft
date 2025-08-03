@@ -1,0 +1,97 @@
+@import '../../styles/tokens';
+@import '../../styles/variables';
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-family: inherit;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  cursor: default;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+
+  // Sizes
+  &--sm {
+    padding: $spacing-xs $spacing-s;
+    font-size: 12px;
+    line-height: 16px;
+    min-height: 24px;
+  }
+
+  &--md {
+    padding: $spacing-s $spacing-m;
+    font-size: 14px;
+    line-height: 20px;
+    min-height: 32px;
+  }
+
+  &--lg {
+    padding: $spacing-ms $spacing-l;
+    font-size: 16px;
+    line-height: 24px;
+    min-height: 40px;
+  }
+
+  // Variants
+  &--default {
+    background-color: $surface-1;
+    color: $neutral-0;
+    border: 1px solid $surface-2;
+  }
+
+  &--subtle {
+    background-color: $surface-3;
+    color: $neutral-t80;
+    border: 1px solid transparent;
+  }
+
+  &--outlined {
+    background-color: $surface-1;
+    color: $blue-0;
+    border: 1px solid $blue-0;
+  }
+
+  &--filled-blue {
+    background-color: $blue-0;
+    color: white;
+    border: 1px solid $blue-0;
+  }
+
+  &--filled-orange {
+    background-color: $orange-0;
+    color: white;
+    border: 1px solid $orange-0;
+  }
+
+  // States
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--clickable {
+    cursor: pointer;
+
+    &:hover:not(.chip--disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    &:active:not(.chip--disabled) {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+} 

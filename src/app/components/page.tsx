@@ -2,6 +2,8 @@
 
 import React from "react";
 import Button from "../../components/Button/Button";
+import PriceBox from "../../components/PriceBox/PriceBox";
+import Chip from "../../components/Chip/Chip";
 import Navbar from "../../components/Navbar/Navbar";
 
 export default function ComponentsPage() {
@@ -96,6 +98,76 @@ export default function ComponentsPage() {
                   Body text with Gabarito font
                 </p>
                 <p className="text-sm text-gray-600">Small text</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-md p-8 mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Chips</h2>
+            <div className="space-y-4">
+              <div>
+                <h3 className="font-medium text-gray-700 mb-3">All Variants</h3>
+                <div className="flex flex-wrap gap-3">
+                  <Chip variant="default">Label</Chip>
+                  <Chip variant="subtle">Label</Chip>
+                  <Chip variant="outlined">Label</Chip>
+                  <Chip variant="filled-blue">Label</Chip>
+                  <Chip variant="filled-orange">Label</Chip>
+                </div>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-700 mb-3">Sizes</h3>
+                <div className="flex flex-wrap gap-3 items-center">
+                  <Chip variant="filled-blue" size="sm">
+                    Small
+                  </Chip>
+                  <Chip variant="filled-blue" size="md">
+                    Medium
+                  </Chip>
+                  <Chip variant="filled-blue" size="lg">
+                    Large
+                  </Chip>
+                </div>
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-700 mb-3">Interactive</h3>
+                <div className="flex flex-wrap gap-3">
+                  <Chip
+                    variant="outlined"
+                    onClick={() => console.log("Clicked!")}
+                  >
+                    Clickable
+                  </Chip>
+                  <Chip variant="filled-blue" disabled>
+                    Disabled
+                  </Chip>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-md p-8 mb-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+              Price Box
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div>
+                <h3 className="font-medium text-gray-700 mb-2">Default</h3>
+                <PriceBox price="$106.88" timestamp="Retrieved 13 min ago" />
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-700 mb-2">
+                  Custom Period
+                </h3>
+                <PriceBox
+                  price="$299.99"
+                  period="/ year"
+                  timestamp="Updated 2 hours ago"
+                />
+              </div>
+              <div>
+                <h3 className="font-medium text-gray-700 mb-2">No Timestamp</h3>
+                <PriceBox price="$19.99" />
               </div>
             </div>
           </div>

@@ -1,0 +1,36 @@
+@import '../../styles/tokens';
+@import '../../styles/variables';
+
+.price-box {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  padding: $spacing-m;
+  background-color: $surface-1;
+  border-radius: $border-radius-md;
+  border: 1px solid $surface-2;
+  min-width: 200px;
+
+  &__price {
+    font-size: 24px;
+    font-weight: $font-weight-bold;
+    color: $blue-0;
+    line-height: 1.2;
+    display: flex;
+    align-items: baseline;
+    gap: $spacing-xs;
+  }
+
+  &__period {
+    font-size: 16px;
+    font-weight: $font-weight-normal;
+    color: $neutral-0;
+  }
+
+  &__timestamp {
+    font-size: 14px;
+    font-weight: $font-weight-normal;
+    color: $neutral-t80;
+    line-height: 1.4;
+  }
+} 
