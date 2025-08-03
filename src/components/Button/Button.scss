@@ -1,103 +1,119 @@
+@import '../../styles/tokens';
 @import '../../styles/variables';
-@import '../../styles/mixins';
 
 .btn {
-  @include button-base;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-family: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
   position: relative;
+  overflow: hidden;
   gap: $spacing-xs;
   
-  // Variants
+  // Variants based on your design system
+  &--subtle {
+    background-color: $surface-2;
+    color: $neutral-0;
+    border: 1px solid $surface-2;
+
+    &:hover:not(:disabled) {
+      background-color: $surface-3;
+      border-color: $surface-3;
+    }
+  }
+
   &--primary {
-    background-color: $primary-blue;
-    color: $white;
-    border-color: $primary-blue;
-    
+    background-color: $blue-0;
+    color: white;
+    box-shadow: 0 2px 4px rgba(6, 107, 228, 0.2);
+
     &:hover:not(:disabled) {
-      background-color: $primary-blue-hover;
-      border-color: $primary-blue-hover;
+      background-color: $blue-s10;
+      box-shadow: 0 4px 8px rgba(6, 107, 228, 0.3);
     }
-    
-    &:focus {
-      @include focus-ring;
+
+    &:active:not(:disabled) {
+      transform: translateY(1px);
+      box-shadow: 0 1px 2px rgba(6, 107, 228, 0.2);
     }
   }
-  
-  &--secondary {
-    background-color: $white;
-    color: $primary-blue;
-    border-color: $primary-blue;
-    
+
+  &--primary-flat {
+    background-color: $blue-0;
+    color: white;
+
     &:hover:not(:disabled) {
-      background-color: $secondary-blue;
-      border-color: $primary-blue-hover;
-    }
-    
-    &:focus {
-      @include focus-ring;
+      background-color: $blue-s10;
     }
   }
-  
-  &--outline {
+
+  &--dark-primary {
+    background-color: $mono-primary;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: darken($mono-primary, 10%);
+    }
+  }
+
+  &--subtle-text {
     background-color: transparent;
-    color: $primary-blue;
-    border-color: $border-default;
-    
+    color: $neutral-0;
+    padding: 0;
+
     &:hover:not(:disabled) {
-      background-color: $bg-hover;
-      border-color: $border-hover;
-    }
-    
-    &:focus {
-      @include focus-ring;
+      color: $neutral-t80;
     }
   }
-  
-  &--ghost {
+
+  &--primary-text {
     background-color: transparent;
-    color: $text-primary;
-    border-color: transparent;
-    
+    color: $blue-0;
+    padding: 0;
+
     &:hover:not(:disabled) {
-      background-color: $bg-hover;
-    }
-    
-    &:focus {
-      @include focus-ring;
+      color: $blue-s10;
     }
   }
-  
-  &--danger {
-    background-color: $error-red;
-    color: $white;
-    border-color: $error-red;
-    
+
+  &--dark-text {
+    background-color: transparent;
+    color: $mono-primary;
+    padding: 0;
+
     &:hover:not(:disabled) {
-      background-color: darken($error-red, 10%);
-      border-color: darken($error-red, 10%);
-    }
-    
-    &:focus {
-      box-shadow: 0 0 0 3px rgba($error-red, 0.25);
+      color: darken($mono-primary, 10%);
     }
   }
   
   // Sizes
   &--sm {
-    padding: $spacing-xs $spacing-sm;
-    font-size: $font-size-sm;
-    min-height: 32px;
+    padding: $spacing-s $spacing-m;
+    font-size: 14px;
+    line-height: 20px;
+    height: 32px;
+    width: 71px;
   }
   
   &--md {
-    padding: $spacing-sm $spacing-md;
-    font-size: $font-size-base;
-    min-height: 40px;
+    padding: $spacing-ms $spacing-l;
+    font-size: 16px;
+    line-height: 24px;
+    height: 40px;
+    width: 87px;
   }
   
   &--lg {
-    padding: $spacing-md $spacing-lg;
-    font-size: $font-size-lg;
-    min-height: 48px;
+    padding: $spacing-m $spacing-xl;
+    font-size: 18px;
+    line-height: 28px;
+    height: 48px;
+    width: 120px;
   }
   
   // States
@@ -159,7 +175,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity $transition-fast;
+    transition: opacity 0.2s ease;
   }
 }
 

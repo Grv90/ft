@@ -1,37 +1,44 @@
-import React from 'react';
-import './Button.scss';
+import React from "react";
+import "./Button.scss";
 
 export interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
+  variant?:
+    | "subtle"
+    | "primary"
+    | "primary-flat"
+    | "dark-primary"
+    | "subtle-text"
+    | "primary-text"
+    | "dark-text";
+  size?: "sm" | "md" | "lg";
   disabled?: boolean;
   loading?: boolean;
   icon?: React.ReactNode;
-  iconPosition?: 'left' | 'right';
+  iconPosition?: "left" | "right";
   onClick?: () => void;
-  type?: 'button' | 'submit' | 'reset';
+  type?: "button" | "submit" | "reset";
   className?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
   children,
-  variant = 'primary',
-  size = 'md',
+  variant = "primary",
+  size = "md",
   disabled = false,
   loading = false,
   icon,
-  iconPosition = 'left',
+  iconPosition = "left",
   onClick,
-  type = 'button',
-  className = '',
+  type = "button",
+  className = "",
 }) => {
-  const baseClass = 'btn';
+  const baseClass = "btn";
   const variantClass = `btn--${variant}`;
   const sizeClass = `btn--${size}`;
-  const stateClass = disabled ? 'btn--disabled' : '';
-  const loadingClass = loading ? 'btn--loading' : '';
-  const iconClass = icon ? `btn--icon btn--icon-${iconPosition}` : '';
+  const stateClass = disabled ? "btn--disabled" : "";
+  const loadingClass = loading ? "btn--loading" : "";
+  const iconClass = icon ? `btn--icon btn--icon-${iconPosition}` : "";
 
   const buttonClasses = [
     baseClass,
@@ -43,7 +50,7 @@ const Button: React.FC<ButtonProps> = ({
     className,
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (disabled || loading) {
@@ -75,18 +82,18 @@ const Button: React.FC<ButtonProps> = ({
           </svg>
         </span>
       )}
-      
-      {!loading && icon && iconPosition === 'left' && (
+
+      {!loading && icon && iconPosition === "left" && (
         <span className="btn__icon btn__icon--left">{icon}</span>
       )}
-      
+
       <span className="btn__content">{children}</span>
-      
-      {!loading && icon && iconPosition === 'right' && (
+
+      {!loading && icon && iconPosition === "right" && (
         <span className="btn__icon btn__icon--right">{icon}</span>
       )}
     </button>
   );
 };
 
-export default Button; 
+export default Button;
