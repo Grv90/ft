@@ -1,0 +1,217 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.input {
+  @include input-base;
+  position: relative;
+  
+  // Sizes
+  &--sm {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-sm;
+    min-height: 32px;
+  }
+  
+  &--md {
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-base;
+    min-height: 40px;
+  }
+  
+  &--lg {
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-size-lg;
+    min-height: 48px;
+  }
+  
+  // States
+  &--error {
+    border-color: $border-error;
+    background-color: $bg-error;
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($error-red, 0.25);
+    }
+  }
+  
+  &--success {
+    border-color: $border-success;
+    background-color: $bg-success;
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($success-green, 0.25);
+    }
+  }
+  
+  &--warning {
+    border-color: $warning-yellow;
+    background-color: $warning-yellow-light;
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($warning-yellow, 0.25);
+    }
+  }
+  
+  &--disabled {
+    background-color: $bg-disabled;
+    color: $text-disabled;
+    cursor: not-allowed;
+    
+    &:hover {
+      border-color: $border-default;
+    }
+  }
+  
+  &--readonly {
+    background-color: $bg-disabled;
+    color: $text-primary;
+    
+    &:hover {
+      border-color: $border-default;
+    }
+  }
+  
+  // Icon styles
+  &--icon {
+    &-left {
+      padding-left: 40px;
+    }
+    
+    &-right {
+      padding-right: 40px;
+    }
+  }
+}
+
+.input__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input__icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: $text-muted;
+  pointer-events: none;
+  
+  &--left {
+    left: $spacing-sm;
+  }
+  
+  &--right {
+    right: $spacing-sm;
+  }
+}
+
+.input__label {
+  @include text-sm;
+  font-weight: $font-weight-medium;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+}
+
+.input__required {
+  color: $error-red;
+  margin-left: $spacing-xs;
+}
+
+.input__text {
+  @include text-xs;
+  margin-top: $spacing-xs;
+  
+  &--helper {
+    color: $text-muted;
+  }
+  
+  &--error {
+    color: $error-red;
+  }
+}
+
+// Textarea styles
+.textarea {
+  @include input-base;
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+  
+  &--sm {
+    min-height: 60px;
+  }
+  
+  &--lg {
+    min-height: 120px;
+  }
+}
+
+// Select styles
+.select {
+  @include input-base;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right $spacing-sm center;
+  background-repeat: no-repeat;
+  background-size: 16px 12px;
+  padding-right: 40px;
+  
+  &:focus {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23007bff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  }
+}
+
+// Date input styles
+.date-input {
+  @include input-base;
+  position: relative;
+  
+  &::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+  }
+}
+
+// Input group styles
+.input-group {
+  display: flex;
+  
+  .input,
+  .select,
+  .btn {
+    border-radius: 0;
+    
+    &:first-child {
+      border-top-left-radius: $border-radius-md;
+      border-bottom-left-radius: $border-radius-md;
+    }
+    
+    &:last-child {
+      border-top-right-radius: $border-radius-md;
+      border-bottom-right-radius: $border-radius-md;
+    }
+    
+    &:not(:last-child) {
+      border-right: none;
+    }
+  }
+} 

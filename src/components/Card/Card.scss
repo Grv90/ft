@@ -1,0 +1,205 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.card {
+  @include card-base;
+  
+  // Variants
+  &--default {
+    background-color: $bg-default;
+    border: 1px solid $border-default;
+  }
+  
+  &--elevated {
+    background-color: $bg-default;
+    border: none;
+    box-shadow: $shadow-lg;
+  }
+  
+  &--outlined {
+    background-color: transparent;
+    border: 2px solid $border-default;
+  }
+  
+  &--filled {
+    background-color: $bg-hover;
+    border: 1px solid $border-default;
+  }
+  
+  // Sizes
+  &--sm {
+    border-radius: $border-radius-sm;
+  }
+  
+  &--md {
+    border-radius: $border-radius-md;
+  }
+  
+  &--lg {
+    border-radius: $border-radius-lg;
+  }
+  
+  // Padding variants
+  &--padding-none {
+    padding: 0;
+  }
+  
+  &--padding-sm {
+    padding: $spacing-sm;
+  }
+  
+  &--padding-md {
+    padding: $spacing-md;
+  }
+  
+  &--padding-lg {
+    padding: $spacing-lg;
+  }
+  
+  &--padding-xl {
+    padding: $spacing-xl;
+  }
+  
+  // Interactive states
+  &--hover {
+    transition: all $transition-normal;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: $shadow-lg;
+    }
+  }
+  
+  &--clickable {
+    cursor: pointer;
+    transition: all $transition-normal;
+    
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: $shadow-md;
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+  
+  // Card sections
+  &__header {
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid $border-default;
+    margin-bottom: $spacing-md;
+    
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+  }
+  
+  &__body {
+    // Body content inherits card padding
+  }
+  
+  &__footer {
+    padding-top: $spacing-md;
+    border-top: 1px solid $border-default;
+    margin-top: $spacing-md;
+    
+    &:first-child {
+      padding-top: 0;
+      border-top: none;
+      margin-top: 0;
+    }
+  }
+}
+
+// Card grid layouts
+.card-grid {
+  @include grid-auto-fit(300px);
+}
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+// Card with image
+.card-image {
+  overflow: hidden;
+  
+  .card__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin: calc(-1 * $spacing-md) calc(-1 * $spacing-md) $spacing-md calc(-1 * $spacing-md);
+    
+    @include mobile {
+      height: 150px;
+    }
+  }
+}
+
+// Pricing card variant
+.card-pricing {
+  text-align: center;
+  position: relative;
+  
+  .card__price {
+    @include text-xxl;
+    font-weight: $font-weight-bold;
+    color: $primary-blue;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .card__period {
+    @include text-sm;
+    color: $text-muted;
+    margin-bottom: $spacing-md;
+  }
+  
+  .card__features {
+    list-style: none;
+    padding: 0;
+    margin: $spacing-md 0;
+    
+    li {
+      padding: $spacing-xs 0;
+      border-bottom: 1px solid $border-default;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+// Feature card variant
+.card-feature {
+  text-align: center;
+  
+  .card__icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto $spacing-md;
+    background-color: $secondary-blue;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $primary-blue;
+  }
+  
+  .card__title {
+    @include text-lg;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-sm;
+  }
+  
+  .card__description {
+    @include text-sm;
+    color: $text-secondary;
+    line-height: $line-height-relaxed;
+  }
+} 

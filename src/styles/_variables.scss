@@ -1,0 +1,98 @@
+// Design System Variables
+// Based on Figma designs
+
+// Colors
+$primary-blue: #007bff;
+$primary-blue-hover: #0056b3;
+$secondary-blue: #e3f2fd;
+$error-red: #dc3545;
+$error-red-light: #f8d7da;
+$success-green: #28a745;
+$success-green-light: #d4edda;
+$warning-yellow: #ffc107;
+$warning-yellow-light: #fff3cd;
+
+// Neutral Colors
+$white: #ffffff;
+$gray-50: #f8f9fa;
+$gray-100: #e9ecef;
+$gray-200: #dee2e6;
+$gray-300: #ced4da;
+$gray-400: #adb5bd;
+$gray-500: #6c757d;
+$gray-600: #495057;
+$gray-700: #343a40;
+$gray-800: #212529;
+$gray-900: #000000;
+
+// Text Colors
+$text-primary: $gray-900;
+$text-secondary: $gray-600;
+$text-muted: $gray-500;
+$text-disabled: $gray-400;
+
+// Border Colors
+$border-default: $gray-300;
+$border-hover: $gray-400;
+$border-focus: $primary-blue;
+$border-error: $error-red;
+$border-success: $success-green;
+
+// Background Colors
+$bg-default: $white;
+$bg-hover: $gray-50;
+$bg-disabled: $gray-100;
+$bg-error: $error-red-light;
+$bg-success: $success-green-light;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-xxl: 48px;
+
+// Border Radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+
+// Typography
+$font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-xxl: 24px;
+$font-size-xxxl: 32px;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+// Transitions
+$transition-fast: 0.15s ease-in-out;
+$transition-normal: 0.2s ease-in-out;
+$transition-slow: 0.3s ease-in-out;
+
+// Z-index
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;

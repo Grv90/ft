@@ -1,0 +1,115 @@
+@import '../../styles/tokens';
+
+.navbar {
+  background-color: $blue-0; // Using design token
+  color: white;
+  height: $size-8; // 64px
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  &__container {
+    width: 100%;
+    padding: $spacing-s $spacing-m;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: $spacing-ms;
+    height: 100%;
+  }
+
+  &__menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    color: white;
+    height: 100%;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &:focus {
+      outline: 2px solid rgba(255, 255, 255, 0.5);
+      outline-offset: 2px;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    height: 100%;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  &__logo-image {
+    height: 24px;
+    width: auto;
+  }
+
+  &__profile-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: $spacing-xs;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    display: flex;
+    width: $size-5;
+    height: $size-5;
+    align-items: center;
+    justify-content: center;
+    margin-right: $spacing-m;
+    color: $blue-0;
+    background-color: white;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &:focus {
+      outline: 2px solid rgba(255, 255, 255, 0.5);
+      outline-offset: 2px;
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .navbar {
+    &__container {
+      padding: 0 0.75rem;
+    }
+
+    &__logo-image {
+      height: 20px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    &__logo-image {
+      height: 18px;
+    }
+  }
+} 

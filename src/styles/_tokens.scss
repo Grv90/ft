@@ -1,0 +1,105 @@
+
+// Spacing Variables
+// ==========================================
+$spacing-2xs: 2px;
+$spacing-xs: 4px;
+$spacing-s: 8px;
+$spacing-ms: 12px;
+$spacing-m: 16px;
+$spacing-ls: 20px;
+$spacing-l: 24px;
+$spacing-xl: 32px;
+$spacing-2xls: 40px;
+$spacing-2xl: 48px;
+$spacing-3xl: 64px;
+$spacing-page-padding: 48px;
+
+// Size Variables
+// ==========================================
+$size-1: 8px;
+$size-1_5: 12px;
+$size-2: 16px;
+$size-3: 20px;
+$size-4: 24px;
+$size-5: 32px;
+$size-6: 40px;
+$size-7: 48px;
+$size-8: 56px;
+$size-9: 64px;
+$size-10: 80px;
+$size-11: 96px;
+$size-12: 128px;
+
+// Color Variables
+// ==========================================
+
+// Mono Colors
+$mono-primary: rgba(3, 25, 52, 1);
+$mono-secondary: rgba(240, 241, 242, 1);
+
+// Blue Colors
+$blue-t90: rgba(205, 227, 255, 1);
+$blue-t10: rgba(10, 121, 255, 1);
+$blue-0: rgba(6, 107, 228, 1);
+$blue-s10: rgba(4, 60, 129, 1);
+
+// Neutral Colors
+$neutral-0: rgba(96, 100, 118, 1);
+$neutral-t80: rgba(149, 153, 169, 1);
+
+// Surface Colors
+$surface-1: rgba(255, 255, 255, 1);
+$surface-2: rgba(232, 233, 237, 1);
+$surface-3: rgba(247, 248, 252, 1);
+
+// Accent Colors
+$orange-0: rgba(255, 147, 65, 1);
+$red-0: rgba(255, 40, 25, 1);
+
+// CSS Custom Properties (for use in CSS)
+// ==========================================
+:root {
+  // Spacing
+  --spacing-2xs: #{$spacing-2xs};
+  --spacing-xs: #{$spacing-xs};
+  --spacing-s: #{$spacing-s};
+  --spacing-ms: #{$spacing-ms};
+  --spacing-m: #{$spacing-m};
+  --spacing-ls: #{$spacing-ls};
+  --spacing-l: #{$spacing-l};
+  --spacing-xl: #{$spacing-xl};
+  --spacing-2xls: #{$spacing-2xls};
+  --spacing-2xl: #{$spacing-2xl};
+  --spacing-3xl: #{$spacing-3xl};
+  --spacing-page-padding: #{$spacing-page-padding};
+
+  // Sizes
+  --size-1: #{$size-1};
+  --size-1_5: #{$size-1_5};
+  --size-2: #{$size-2};
+  --size-3: #{$size-3};
+  --size-4: #{$size-4};
+  --size-5: #{$size-5};
+  --size-6: #{$size-6};
+  --size-7: #{$size-7};
+  --size-8: #{$size-8};
+  --size-9: #{$size-9};
+  --size-10: #{$size-10};
+  --size-11: #{$size-11};
+  --size-12: #{$size-12};
+
+  // Colors
+  --mono-primary: #{$mono-primary};
+  --mono-secondary: #{$mono-secondary};
+  --blue-t90: #{$blue-t90};
+  --blue-t10: #{$blue-t10};
+  --blue-0: #{$blue-0};
+  --blue-s10: #{$blue-s10};
+  --neutral-0: #{$neutral-0};
+  --neutral-t80: #{$neutral-t80};
+  --surface-1: #{$surface-1};
+  --surface-2: #{$surface-2};
+  --surface-3: #{$surface-3};
+  --orange-0: #{$orange-0};
+  --red-0: #{$red-0};
+} 

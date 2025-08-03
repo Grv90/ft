@@ -1,0 +1,205 @@
+// Import variables
+@import 'variables';
+
+// Mixins for common component patterns
+
+// Focus styles
+@mixin focus-ring {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba($primary-blue, 0.25);
+}
+
+// Button base styles
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid transparent;
+  border-radius: $border-radius-md;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-normal;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all $transition-normal;
+  user-select: none;
+  
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+// Input base styles
+@mixin input-base {
+  display: block;
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $border-default;
+  border-radius: $border-radius-md;
+  background-color: $bg-default;
+  color: $text-primary;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+  transition: all $transition-normal;
+  
+  &::placeholder {
+    color: $text-muted;
+  }
+  
+  &:hover {
+    border-color: $border-hover;
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: $border-focus;
+    box-shadow: 0 0 0 3px rgba($primary-blue, 0.25);
+  }
+  
+  &:disabled {
+    background-color: $bg-disabled;
+    color: $text-disabled;
+    cursor: not-allowed;
+  }
+  
+  &.error {
+    border-color: $border-error;
+    background-color: $bg-error;
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($error-red, 0.25);
+    }
+  }
+  
+  &.success {
+    border-color: $border-success;
+    background-color: $bg-success;
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($success-green, 0.25);
+    }
+  }
+}
+
+// Card base styles
+@mixin card-base {
+  background-color: $bg-default;
+  border: 1px solid $border-default;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+  padding: $spacing-lg;
+  transition: all $transition-normal;
+  
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+// Typography mixins
+@mixin text-xs {
+  font-size: $font-size-xs;
+  line-height: $line-height-tight;
+}
+
+@mixin text-sm {
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+}
+
+@mixin text-base {
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+}
+
+@mixin text-lg {
+  font-size: $font-size-lg;
+  line-height: $line-height-normal;
+}
+
+@mixin text-xl {
+  font-size: $font-size-xl;
+  line-height: $line-height-tight;
+}
+
+@mixin text-xxl {
+  font-size: $font-size-xxl;
+  line-height: $line-height-tight;
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+// Grid utilities
+@mixin grid-auto-fit($min-width: 250px) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+  gap: $spacing-lg;
+}
+
+// Responsive breakpoints
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+// Animation mixins
+@mixin fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@mixin slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 
