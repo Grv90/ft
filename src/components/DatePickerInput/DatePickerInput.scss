@@ -1,0 +1,123 @@
+@import '../../styles/tokens';
+@import '../../styles/variables';
+
+.date-picker-input {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  width: 100%;
+
+  &__label {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $neutral-0;
+    line-height: $line-height-normal;
+  }
+
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__field {
+    width: 100%;
+    padding: $spacing-s $spacing-m;
+    padding-right: $spacing-xl;
+    font-size: $font-size-base;
+    font-weight: $font-weight-normal;
+    line-height: $line-height-normal;
+    color: $neutral-0;
+    background-color: $surface-1;
+    border: 1px solid $surface-2;
+    transition: $transition-normal;
+    outline: none;
+
+    &::placeholder {
+      color: $neutral-t80;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: $spacing-s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $neutral-t80;
+    transition: color $transition-normal;
+    pointer-events: none;
+  }
+
+  // States
+  &--focused {
+    .date-picker-input__field {
+      border-color: $blue-0;
+      box-shadow: 0 0 0 1px $blue-0;
+    }
+
+    .date-picker-input__icon {
+      color: $blue-0;
+    }
+  }
+
+  &--has-value {
+    .date-picker-input__field {
+      color: $neutral-0;
+    }
+  }
+
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    .date-picker-input__field {
+      background-color: $surface-2;
+      color: $neutral-t80;
+      cursor: not-allowed;
+
+      &::placeholder {
+        color: $neutral-t80;
+      }
+    }
+
+    .date-picker-input__icon {
+      color: $neutral-t80;
+    }
+  }
+
+  &--error {
+    .date-picker-input__field {
+      border-color: $red-0;
+      box-shadow: 0 0 0 1px $red-0;
+    }
+
+    .date-picker-input__icon {
+      color: $red-0;
+    }
+  }
+
+  // Focused + has value
+  &--focused.date-picker-input--has-value {
+    .date-picker-input__field {
+      border-color: $blue-0;
+      box-shadow: 0 0 0 1px $blue-0;
+      color: $neutral-0;
+    }
+
+    .date-picker-input__icon {
+      color: $blue-0;
+    }
+  }
+
+  // Disabled + has value
+  &--disabled.date-picker-input--has-value {
+    .date-picker-input__field {
+      color: $neutral-t80;
+    }
+  }
+} 

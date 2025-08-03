@@ -1,0 +1,53 @@
+@import '../../styles/tokens';
+@import '../../styles/variables';
+
+.typography {
+  &__heading-1 {
+    font-size: $font-size-xxxl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    color: $neutral-0;
+  }
+
+  &__heading-2 {
+    font-size: $font-size-xxl;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    color: $neutral-0;
+  }
+
+  &__heading-3 {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    color: $neutral-0;
+  }
+
+  &__heading-4 {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-normal;
+    color: $neutral-0;
+  }
+
+  &__body {
+    font-size: $font-size-base;
+    font-weight: $font-weight-normal;
+    line-height: $line-height-normal;
+    color: $neutral-0;
+  }
+
+  &__body-small {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-normal;
+    line-height: $line-height-normal;
+    color: $neutral-t80;
+  }
+
+  &__caption {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-normal;
+    line-height: $line-height-normal;
+    color: $neutral-t80;
+  }
+} 
