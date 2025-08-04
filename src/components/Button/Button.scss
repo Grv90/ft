@@ -97,7 +97,8 @@
     font-size: 14px;
     line-height: 20px;
     height: 32px;
-    width: 71px;
+    min-width: 71px;
+    width: auto;
   }
   
   &--md {
@@ -105,7 +106,8 @@
     font-size: 16px;
     line-height: 24px;
     height: 40px;
-    width: 87px;
+    min-width: 87px;
+    width: auto;
   }
   
   &--lg {
@@ -113,7 +115,8 @@
     font-size: 18px;
     line-height: 28px;
     height: 48px;
-    width: 120px;
+    min-width: 120px;
+    width: auto;
   }
   
   // States

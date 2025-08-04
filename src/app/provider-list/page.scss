@@ -1,0 +1,16 @@
+@import "../../styles/tokens";
+
+.provider-list-page {
+  min-height: 100vh;
+  background-color: #f9fafb; // bg-gray-50
+
+  &__content {
+    padding-top: 96px; // pt-24
+  }
+
+  &__container {
+    max-width: 88rem; // max-w-8xl
+    margin: 0 auto;
+    padding-left: 32px; // pl-8
+  }
+} 

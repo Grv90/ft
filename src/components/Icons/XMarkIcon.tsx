@@ -20,8 +20,8 @@ const XMarkIcon: React.FC<XMarkIconProps> = ({
       fill="none"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M15.9999 14.5382L22.5381 8L23.9999 9.46179L17.4617 16L23.9999 22.5382L22.5381 24L15.9999 17.4618L9.46166 24L7.99988 22.5382L14.5381 16L7.99988 9.46179L9.46166 8L15.9999 14.5382Z"
         fill={fill}
       />

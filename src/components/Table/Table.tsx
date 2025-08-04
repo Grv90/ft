@@ -21,6 +21,27 @@ export interface TableProps {
   children: React.ReactNode;
 }
 
+// HTML Table Components
+export interface HTMLTableProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export interface HTMLTableHeaderProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export interface HTMLTableRowProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export interface HTMLTableCellProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
 const TableCell: React.FC<TableCellProps> = ({ type, value, price, text }) => {
   const renderContent = () => {
     switch (type) {
@@ -61,5 +82,48 @@ const Table: React.FC<TableProps> = ({ children }) => {
   return <div className="table">{children}</div>;
 };
 
-export { Table, TableRow, TableHeader, TableCell };
+// HTML Table Components
+const HTMLTable: React.FC<HTMLTableProps> = ({ children, className = "" }) => {
+  return <table className={`table ${className}`}>{children}</table>;
+};
+
+const HTMLTableHeader: React.FC<HTMLTableHeaderProps> = ({
+  children,
+  className = "",
+}) => {
+  return <thead className={`table__header ${className}`}>{children}</thead>;
+};
+
+const HTMLTableRow: React.FC<HTMLTableRowProps> = ({
+  children,
+  className = "",
+}) => {
+  return <tr className={`table__row ${className}`}>{children}</tr>;
+};
+
+const HTMLTableCell: React.FC<HTMLTableCellProps> = ({
+  children,
+  className = "",
+}) => {
+  return <td className={`table__cell ${className}`}>{children}</td>;
+};
+
+const HTMLTableHeaderCell: React.FC<HTMLTableCellProps> = ({
+  children,
+  className = "",
+}) => {
+  return <th className={`table__header-cell ${className}`}>{children}</th>;
+};
+
+export {
+  Table,
+  TableRow,
+  TableHeader,
+  TableCell,
+  HTMLTable,
+  HTMLTableHeader,
+  HTMLTableRow,
+  HTMLTableCell,
+  HTMLTableHeaderCell,
+};
 export default Table;

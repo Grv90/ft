@@ -20,8 +20,8 @@ const CheckmarkIcon: React.FC<CheckmarkIconProps> = ({
       fill="none"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M12 23.5859L27.2928 8.29297L28.7071 9.70718L12 26.4143L4.29285 18.7072L5.70706 17.293L12 23.5859Z"
         fill={fill}
       />
