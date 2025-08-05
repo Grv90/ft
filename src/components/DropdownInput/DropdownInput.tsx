@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./DropdownInput.scss";
 import { ChevronDownIcon } from "../Icons";
 
@@ -40,8 +40,15 @@ const DropdownInput: React.FC<DropdownInputProps> = ({
   const [isFocused, setIsFocused] = useState(focused);
   const [isHovered, setIsHovered] = useState(hovered);
   const [selectedValue, setSelectedValue] = useState(value);
+  const [isClickingInside, setIsClickingInside] = useState(false);
+
+  // Sync with external value prop
+  useEffect(() => {
+    setSelectedValue(value);
+  }, [value]);
 
   const handleFocus = () => {
+    console.log("Dropdown handleFocus called, disabled:", disabled);
     if (!disabled) {
       setIsFocused(true);
       onFocus?.();
@@ -49,8 +56,14 @@ const DropdownInput: React.FC<DropdownInputProps> = ({
   };
 
   const handleBlur = () => {
-    setIsFocused(false);
-    onBlur?.();
+    console.log(
+      "Dropdown handleBlur called, isClickingInside:",
+      isClickingInside
+    );
+    if (!isClickingInside) {
+      setIsFocused(false);
+      onBlur?.();
+    }
   };
 
   const handleMouseEnter = () => {
@@ -66,6 +79,7 @@ const DropdownInput: React.FC<DropdownInputProps> = ({
   };
 
   const handleOptionClick = (option: string) => {
+    console.log("Dropdown option clicked:", option, "disabled:", disabled);
     if (!disabled) {
       setSelectedValue(option);
       onChange?.(option);
@@ -104,6 +118,8 @@ const DropdownInput: React.FC<DropdownInputProps> = ({
         className="dropdown-input__container"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onMouseDown={() => setIsClickingInside(true)}
+        onMouseUp={() => setIsClickingInside(false)}
       >
         <div
           className="dropdown-input__field"

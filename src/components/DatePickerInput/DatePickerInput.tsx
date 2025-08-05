@@ -42,11 +42,31 @@ const DatePickerInput: React.FC<DatePickerInputProps> = ({
     onBlur?.();
   };
 
+  const formatDateInput = (value: string): string => {
+    // Remove all non-digit characters
+    const digits = value.replace(/\D/g, "");
+
+    // Format as DD/MM/YYYY
+    if (digits.length <= 2) {
+      return digits;
+    } else if (digits.length <= 4) {
+      return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+    } else if (digits.length <= 8) {
+      return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
+    } else {
+      return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(
+        4,
+        8
+      )}`;
+    }
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!disabled) {
       const newValue = e.target.value;
-      setInputValue(newValue);
-      onChange?.(newValue);
+      const formattedValue = formatDateInput(newValue);
+      setInputValue(formattedValue);
+      onChange?.(formattedValue);
     }
   };
 
@@ -83,6 +103,8 @@ const DatePickerInput: React.FC<DatePickerInputProps> = ({
           onFocus={handleFocus}
           onBlur={handleBlur}
           className="date-picker-input__field"
+          maxLength={10}
+          inputMode="numeric"
         />
         <div className="date-picker-input__icon">
           <CalendarIcon size={20} />

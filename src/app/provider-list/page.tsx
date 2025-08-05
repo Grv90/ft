@@ -23,7 +23,7 @@ export default function ProviderListPage() {
       price: "$106.88",
       period: "/ mo",
       timestamp: "Retrieved 13 min ago",
-      isCheapest: true,
+      isCheapest: false,
       description: "Unlimited data for your\n convinience",
       features: {
         "Yearly Payment": { value: 1000, context: "per year" },
@@ -36,8 +36,8 @@ export default function ProviderListPage() {
       },
     },
     {
-      id: "provider2",
-      name: "FastNet",
+      id: "pronete",
+      name: "Pronete",
       description: "Your internet provider\nsince 2006",
       logo: (
         <Image
@@ -51,6 +51,7 @@ export default function ProviderListPage() {
       price: "$98.54",
       period: "/ mo",
       timestamp: "Retrieved 5 min ago",
+      isCheapest: true,
       features: {
         "Yearly Payment": { value: 900, context: "per year" },
         Data: { value: "30 GB", context: "per month" },
@@ -62,8 +63,8 @@ export default function ProviderListPage() {
       },
     },
     {
-      id: "provider3",
-      name: "ConnectPlus",
+      id: "tebiobio",
+      name: "Tebiobio",
       description: "Stay connected 24/7",
       logo: (
         <Image

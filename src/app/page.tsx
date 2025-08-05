@@ -31,18 +31,10 @@ export default function Home() {
 
           <div className="home-page__actions">
             <a className="home-page__button" href="/design-system">
-              View Components
+              View Design System
             </a>
             <a className="home-page__button" href="/provider-list">
-              Provider List
-            </a>
-            <a
-              className="home-page__button"
-              href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Read our docs
+              Provider List Page
             </a>
           </div>
         </main>

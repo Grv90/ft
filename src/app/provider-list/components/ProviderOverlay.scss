@@ -1,0 +1,168 @@
+@import "../../../styles/tokens";
+@import "../../../styles/variables";
+
+.provider-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+  }
+
+  &__content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 1001;
+  }
+
+  &__left {
+    flex: 1;
+    position: relative;
+    
+    // This creates the blurred effect on the left side
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+    }
+  }
+
+  &__right {
+    width: 66.67%; 
+    background-color: $surface-3;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-xl $spacing-xl $spacing-l;
+  }
+
+  &__header-left {
+    flex: 1;
+  }
+
+  &__form-title-header {
+    color: $mono-primary;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  &__body {
+    flex: 1;
+    padding: $spacing-xl;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  &__loading {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: $spacing-l;
+  }
+
+  &__logo-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: $spacing-m;
+  }
+
+  &__status {
+    text-align: center;
+    color: $neutral-0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &__form-title {
+    text-align: center;
+    color: $mono-primary;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: $spacing-l;
+  }
+
+  &__form-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-l;
+  }
+
+  &__action-bar {
+    padding-top: $spacing-l;
+    margin-top: auto;
+  }
+
+  &__action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-m;
+  }
+
+  &__form-placeholder {
+    padding: $spacing-l;
+    background-color: $surface-3;
+    border-radius: 8px;
+    border: 1px dashed $neutral-t80;
+    
+    p {
+      margin: 0 0 $spacing-s 0;
+      color: $neutral-0;
+      font-size: 14px;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    &__content {
+      flex-direction: column;
+    }
+
+    &__left {
+      display: none; // Hide left side on mobile
+    }
+
+    &__right {
+      width: 100%;
+      height: 100%;
+    }
+  }
+} 

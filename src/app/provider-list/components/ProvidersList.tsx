@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import { CheckmarkIcon, XMarkIcon, ArrowIcon } from "../../../components/Icons";
-import Card from "../../../components/Card/Card";
 import Button from "../../../components/Button/Button";
 import Chip from "../../../components/Chip/Chip";
 import {
@@ -12,6 +11,8 @@ import {
 } from "./ProvidersListTable";
 import "./ProvidersList.scss";
 import PriceBox from "@/components/PriceBox";
+import ProviderOverlay from "./ProviderOverlay";
+import { FeedbackModal } from "../../../components/FeedbackModal";
 
 export interface Provider {
   id: string;
@@ -39,6 +40,12 @@ const ProvidersList: React.FC<ProvidersListProps> = ({
   providers,
   onProviderAction,
 }) => {
+  const [selectedProvider, setSelectedProvider] = useState<Provider | null>(
+    null
+  );
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+
   const features = [
     "Yearly Payment",
     "Data",
@@ -48,6 +55,27 @@ const ProvidersList: React.FC<ProvidersListProps> = ({
     "24/7 Support",
     "Router",
   ];
+
+  const handleGetStarted = (providerId: string) => {
+    const provider = providers.find((p) => p.id === providerId);
+    if (provider) {
+      setSelectedProvider(provider);
+      setIsOverlayOpen(true);
+    }
+    onProviderAction?.(providerId);
+  };
+
+  const handleCloseOverlay = () => {
+    setIsOverlayOpen(false);
+    setSelectedProvider(null);
+  };
+
+  const handleFormComplete = (formData: any) => {
+    console.log("Form completed:", formData);
+    setIsOverlayOpen(false);
+    setSelectedProvider(null);
+    setShowFeedbackModal(true);
+  };
 
   return (
     <div className="providers-list">
@@ -101,12 +129,11 @@ const ProvidersList: React.FC<ProvidersListProps> = ({
                   <div className="providers-list__card-left">
                     {/* Price */}
                     <div>
-                      <div className="providers-list__price">
-                        {provider.price}
-                        <span className="providers-list__period">
-                          {provider.period}
-                        </span>
-                      </div>
+                      <PriceBox
+                        price={provider.price}
+                        period={provider.period}
+                        className="providers-list__price-box"
+                      />
                       {provider.timestamp && (
                         <p className="providers-list__timestamp">
                           {provider.timestamp}
@@ -119,7 +146,7 @@ const ProvidersList: React.FC<ProvidersListProps> = ({
                     <Button
                       variant="primary"
                       size="lg"
-                      onClick={() => onProviderAction?.(provider.id)}
+                      onClick={() => handleGetStarted(provider.id)}
                     >
                       Get Started
                       <ArrowIcon width={16} height={16} fill="white" />
@@ -196,6 +223,24 @@ const ProvidersList: React.FC<ProvidersListProps> = ({
           ))}
         </tbody>
       </ProvidersListTable>
+
+      {/* Provider Overlay */}
+      <ProviderOverlay
+        isOpen={isOverlayOpen}
+        onClose={handleCloseOverlay}
+        provider={selectedProvider}
+        onFormComplete={handleFormComplete}
+      />
+
+      {/* Feedback Modal */}
+      <FeedbackModal
+        isOpen={showFeedbackModal}
+        onClose={() => setShowFeedbackModal(false)}
+        onSubmit={(message) => {
+          console.log("Feedback submitted:", message);
+          setShowFeedbackModal(false);
+        }}
+      />
     </div>
   );
 };

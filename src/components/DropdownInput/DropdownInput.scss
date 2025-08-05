@@ -34,7 +34,7 @@
     border: 1px solid $surface-2;
     transition: $transition-normal;
     cursor: pointer;
-    min-height: 48px;
+    
 
     &:focus {
       outline: none;
@@ -111,7 +111,7 @@
 
   &--has-value {
     .dropdown-input__value {
-      color: $neutral-0;
+      color: $neutral-t80;
     }
   }
 

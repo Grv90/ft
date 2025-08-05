@@ -1,0 +1,151 @@
+@import "../../../styles/tokens";
+
+.provider-purchase-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: $spacing-xl;
+
+  &__step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-l;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-l;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-s;
+
+    label {
+      font-size: 14px;
+      font-weight: 400;
+      color: $neutral-0;
+    }
+  }
+
+  &__chips {
+    display: flex;
+    gap: $spacing-s;
+    flex-wrap: wrap;
+  }
+
+  &__router-options {
+    display: flex;
+    gap: $spacing-m;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: $spacing-l;
+    flex-shrink: 0;
+  }
+
+  &__action-buttons {
+    display: flex;
+    gap: $spacing-s;
+  }
+
+  &__back-btn {
+    margin-right: $spacing-s;
+  }
+
+  &__confirmation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: $spacing-xl 0;
+  }
+
+  &__confirmation-content {
+    max-width: 400px;
+  }
+
+  &__confirmation-title {
+    color: $mono-primary;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__confirmation-message {
+    p {
+      color: $neutral-0;
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: $spacing-m;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__dashboard-btn {
+    margin-left: auto;
+  }
+
+  &__privacy {
+    p {
+      margin: 0;
+      margin-right: $spacing-l;
+      color: $neutral-0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  }
+
+  &__privacy-link {
+    color: $blue-0;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+    &__row {
+      grid-template-columns: 1fr;
+      gap: $spacing-m;
+    }
+
+    &__chips {
+      gap: $spacing-xs;
+    }
+
+    &__router-options {
+      gap: $spacing-s;
+    }
+
+    &__actions {
+      flex-direction: column;
+      gap: $spacing-m;
+      align-items: stretch;
+    }
+
+    &__action-buttons {
+      justify-content: stretch;
+    }
+  }
+} 
