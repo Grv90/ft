@@ -46,7 +46,6 @@ const ProvidersList: React.FC<ProvidersListProps> = ({
   onProviderAction,
 }) => {
   const {
-    selectedProvider,
     isFormOpen: isOverlayOpen,
     showFeedbackModal,
     open,

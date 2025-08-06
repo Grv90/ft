@@ -6,7 +6,7 @@ import DatePickerInput from "../../../components/DatePickerInput/DatePickerInput
 import Chip from "../../../components/Chip/Chip";
 import "./ProviderPurchaseForm.scss";
 import { useProviderPurchaseForm } from "../hooks/useProviderPurchaseForm";
-import type { ProviderPurchaseFormData } from "../../../../store/slices/providerPurchaseFormSlice";
+import type { ProviderPurchaseFormData } from "../../../store/slices/providerPurchaseFormSlice";
 
 export interface ProviderPurchaseFormProps {
   onContinue: (formData: ProviderPurchaseFormData) => void;
