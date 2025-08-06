@@ -1,39 +1,50 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { XMarkIcon } from "../../../components/Icons";
 import Button from "../../../components/Button/Button";
 import ProviderPurchaseForm from "./ProviderPurchaseForm";
-
 import "./ProviderOverlay.scss";
+import { useProviderPurchaseFormState } from "../../../store/hooks/useProviderPurchaseFormState";
 
 export interface ProviderOverlayProps {
   isOpen: boolean;
   onClose: () => void;
   onFormComplete?: (formData: unknown) => void;
-  provider: {
-    id: string;
-    name: string;
-    logo: React.ReactNode;
-    price: string;
-    period: string;
-    description?: string;
-    features: {
-      [key: string]: {
-        value: boolean | string | number;
-        context: string | null;
-      };
-    };
-  } | null;
 }
 
 const ProviderOverlay: React.FC<ProviderOverlayProps> = ({
   isOpen,
   onClose,
   onFormComplete,
-  provider,
 }) => {
-  const [loadingState, setLoadingState] = useState<
-    "connecting" | "retrieving" | "form"
-  >("connecting");
+  const {
+    selectedProvider: provider,
+    loadingState,
+    setLoadingState,
+    complete,
+  } = useProviderPurchaseFormState();
+
+  // Function to get provider logo based on provider ID
+  const getProviderLogo = (providerId: string) => {
+    // Map provider IDs to their logos
+    const logoMap: Record<string, React.ReactNode> = {
+      cloudid: (
+        <div className="provider-logo">
+          <img src="/images/providers/image1.png" alt="Cloudid" />
+        </div>
+      ),
+      pronete: (
+        <div className="provider-logo">
+          <img src="/images/providers/image2.png" alt="Pronete" />
+        </div>
+      ),
+      tebiobio: (
+        <div className="provider-logo">
+          <img src="/images/providers/image3.png" alt="Tebiobio" />
+        </div>
+      ),
+    };
+    return logoMap[providerId] || <div className="provider-logo">Provider</div>;
+  };
 
   useEffect(() => {
     if (!isOpen || !provider) return;
@@ -103,7 +114,7 @@ const ProviderOverlay: React.FC<ProviderOverlayProps> = ({
             {loadingState === "connecting" && (
               <div className="provider-overlay__loading">
                 <div className="provider-overlay__logo-center">
-                  {provider.logo}
+                  {provider && getProviderLogo(provider.id)}
                 </div>
                 <div className="provider-overlay__status">Connecting...</div>
               </div>
@@ -112,7 +123,7 @@ const ProviderOverlay: React.FC<ProviderOverlayProps> = ({
             {loadingState === "retrieving" && (
               <div className="provider-overlay__loading">
                 <div className="provider-overlay__logo-center">
-                  {provider.logo}
+                  {provider && getProviderLogo(provider.id)}
                 </div>
                 <div className="provider-overlay__status">Retrieving...</div>
               </div>
@@ -120,9 +131,9 @@ const ProviderOverlay: React.FC<ProviderOverlayProps> = ({
 
             {loadingState === "form" && (
               <ProviderPurchaseForm
-                provider={provider}
                 onContinue={(formData) => {
                   console.log("Form submitted:", formData);
+                  complete();
                   onFormComplete?.(formData);
                 }}
                 onCancel={onClose}

@@ -22,7 +22,7 @@
     border: 1px solid $surface-2;
 
     &:hover:not(:disabled) {
-      background-color: $surface-3;
+      background-color: $neutral-t80;
       border-color: $surface-3;
     }
   }
@@ -67,7 +67,7 @@
     padding: 0;
 
     &:hover:not(:disabled) {
-      color: $neutral-t80;
+      color: $mono-primary;
     }
   }
 
@@ -124,10 +124,6 @@
     opacity: 0.6;
     cursor: not-allowed;
     
-    &:hover {
-      background-color: inherit;
-      border-color: inherit;
-    }
   }
   
   &--loading {

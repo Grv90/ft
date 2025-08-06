@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { CheckmarkIcon, XMarkIcon, ArrowIcon } from "../../../components/Icons";
 import Button from "../../../components/Button/Button";
 import Chip from "../../../components/Chip/Chip";
@@ -13,6 +13,7 @@ import "./ProvidersList.scss";
 import PriceBox from "@/components/PriceBox";
 import ProviderOverlay from "./ProviderOverlay";
 import { FeedbackModal } from "../../../components/FeedbackModal";
+import { useProviderPurchaseFormState } from "../../../store/hooks/useProviderPurchaseFormState";
 
 export interface Provider {
   id: string;
@@ -40,11 +41,14 @@ const ProvidersList: React.FC<ProvidersListProps> = ({
   providers,
   onProviderAction,
 }) => {
-  const [selectedProvider, setSelectedProvider] = useState<Provider | null>(
-    null
-  );
-  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
-  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+  const {
+    selectedProvider,
+    isFormOpen: isOverlayOpen,
+    showFeedbackModal,
+    open,
+    close,
+    hideFeedback,
+  } = useProviderPurchaseFormState();
 
   const features = [
     "Yearly Payment",
@@ -59,22 +63,27 @@ const ProvidersList: React.FC<ProvidersListProps> = ({
   const handleGetStarted = (providerId: string) => {
     const provider = providers.find((p) => p.id === providerId);
     if (provider) {
-      setSelectedProvider(provider);
-      setIsOverlayOpen(true);
+      // Extract only serializable data for Redux
+      const serializableProvider = {
+        id: provider.id,
+        name: provider.name,
+        price: provider.price,
+        period: provider.period,
+        description: provider.description,
+        // We'll handle logo rendering separately
+      };
+      open(serializableProvider);
     }
     onProviderAction?.(providerId);
   };
 
   const handleCloseOverlay = () => {
-    setIsOverlayOpen(false);
-    setSelectedProvider(null);
+    close();
   };
 
-  const handleFormComplete = (formData: any) => {
+  const handleFormComplete = (formData: unknown) => {
     console.log("Form completed:", formData);
-    setIsOverlayOpen(false);
-    setSelectedProvider(null);
-    setShowFeedbackModal(true);
+    // The form completion is now handled by Redux state
   };
 
   return (
@@ -228,17 +237,16 @@ const ProvidersList: React.FC<ProvidersListProps> = ({
       <ProviderOverlay
         isOpen={isOverlayOpen}
         onClose={handleCloseOverlay}
-        provider={selectedProvider}
         onFormComplete={handleFormComplete}
       />
 
       {/* Feedback Modal */}
       <FeedbackModal
         isOpen={showFeedbackModal}
-        onClose={() => setShowFeedbackModal(false)}
+        onClose={hideFeedback}
         onSubmit={(message) => {
           console.log("Feedback submitted:", message);
-          setShowFeedbackModal(false);
+          hideFeedback();
         }}
       />
     </div>

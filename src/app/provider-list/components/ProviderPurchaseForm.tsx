@@ -1,65 +1,44 @@
-import React, { useState } from "react";
-import { CalendarIcon, ChevronDownIcon } from "../../../components/Icons";
+import React from "react";
 import Button from "../../../components/Button/Button";
 import TextInput from "../../../components/TextInput/TextInput";
 import DropdownInput from "../../../components/DropdownInput/DropdownInput";
 import DatePickerInput from "../../../components/DatePickerInput/DatePickerInput";
 import Chip from "../../../components/Chip/Chip";
 import "./ProviderPurchaseForm.scss";
+import {
+  useProviderPurchaseFormState,
+  useProviderPurchaseFormValidation,
+} from "../../../store/hooks/useProviderPurchaseFormState";
+import type { ProviderPurchaseFormData } from "../../../store/slices/providerPurchaseFormSlice";
 
-export interface FormData {
-  firstName: string;
-  surname: string;
-  address: string;
-  dataPerMonth: string;
-  contractStartDate: string;
-  additionalServices: string[];
-  currentProvider: string;
-  needsRouter: string;
-  cardNumber: string;
-  cardHolderName: string;
-  expiryDate: string;
-  cvv: string;
-}
+export type FormData = ProviderPurchaseFormData;
 
 export interface ProviderPurchaseFormProps {
-  provider: {
-    id: string;
-    name: string;
-    price: string;
-    period: string;
-    description?: string;
-  };
   onContinue: (formData: FormData) => void;
   onCancel: () => void;
 }
 
 const ProviderPurchaseForm: React.FC<ProviderPurchaseFormProps> = ({
-  provider,
   onContinue,
   onCancel,
 }) => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isProviderDropdownOpen, setIsProviderDropdownOpen] = useState(false);
-  const [contractStartDate, setContractStartDate] = useState("10/10/2025");
-  const [formData, setFormData] = useState<FormData>({
-    // Step 1 - Customer Details
-    firstName: "",
-    surname: "",
-    address: "",
-    dataPerMonth: "",
-    contractStartDate: "",
-    additionalServices: [],
-    currentProvider: "",
-    needsRouter: "",
+  const {
+    formData,
+    currentStep,
+    selectedProvider: provider,
+    updateField,
+    next,
+    previous,
+    setStep,
+  } = useProviderPurchaseFormState();
 
-    // Step 2 - Payment Details
-    cardNumber: "",
-    cardHolderName: "",
-    expiryDate: "",
-    cvv: "",
-  });
+  const { isStepValid, errors } = useProviderPurchaseFormValidation();
+
+  const contractStartDate = "10/10/2025"; // This could be moved to Redux state if needed
+
+  // Local state for dropdown open/close
+  const [isProviderDropdownOpen, setIsProviderDropdownOpen] =
+    React.useState(false);
 
   const dataOptions = ["10 Gb", "20 Gb", "30 Gb"];
   const additionalServicesOptions = ["VPN", "Dedicated IP", "24/7 Support"];
@@ -70,67 +49,37 @@ const ProviderPurchaseForm: React.FC<ProviderPurchaseFormProps> = ({
     field: keyof FormData,
     value: string | string[]
   ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+    updateField(field, value);
   };
 
-  const handleChipToggle = (field: string, value: string) => {
-    setFormData((prev) => {
-      const currentValues = Array.isArray(prev[field]) ? prev[field] : [];
-      const newValues = currentValues.includes(value)
-        ? currentValues.filter((v) => v !== value)
-        : [...currentValues, value];
+  const handleChipToggle = (field: keyof FormData, value: string) => {
+    const currentValues = Array.isArray(formData[field])
+      ? (formData[field] as string[])
+      : [];
+    const newValues = currentValues.includes(value)
+      ? currentValues.filter((v) => v !== value)
+      : [...currentValues, value];
 
-      return {
-        ...prev,
-        [field]: newValues,
-      };
-    });
+    updateField(field, newValues);
   };
 
-  const handleSingleChipSelect = (field: string, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
-
-  const isStep1Valid = () => {
-    return (
-      formData.firstName &&
-      formData.surname &&
-      formData.address &&
-      formData.dataPerMonth &&
-      formData.contractStartDate &&
-      formData.currentProvider &&
-      formData.needsRouter
-    );
-  };
-
-  const isStep2Valid = () => {
-    return (
-      formData.cardNumber &&
-      formData.cardHolderName &&
-      formData.expiryDate &&
-      formData.cvv
-    );
+  const handleSingleChipSelect = (field: keyof FormData, value: string) => {
+    updateField(field, value);
   };
 
   const handleContinue = () => {
-    if (currentStep === 1 && isStep1Valid()) {
-      setCurrentStep(2);
-    } else if (currentStep === 2 && isStep2Valid()) {
-      setCurrentStep(3);
+    if (currentStep === 1 && isStepValid(1)) {
+      next();
+    } else if (currentStep === 2 && isStepValid(2)) {
+      next();
     }
   };
 
   const handleBack = () => {
     if (currentStep === 2) {
-      setCurrentStep(1);
+      previous();
     } else if (currentStep === 3) {
-      setCurrentStep(2);
+      previous();
     }
   };
 
@@ -349,7 +298,7 @@ const ProviderPurchaseForm: React.FC<ProviderPurchaseFormProps> = ({
               <div className="provider-purchase-form__confirmation-message">
                 <p>Your contract starts from {contractStartDate}</p>
                 <p>
-                  {provider.name} specialists will contact you with further
+                  {provider?.name} specialists will contact you with further
                   steps.
                 </p>
               </div>
@@ -373,7 +322,10 @@ const ProviderPurchaseForm: React.FC<ProviderPurchaseFormProps> = ({
           <Button
             variant="primary"
             size="md"
-            onClick={() => onContinue(formData)}
+            onClick={() => {
+              console.log("Completing form and showing feedback modal");
+              onContinue(formData);
+            }}
             className="provider-purchase-form__dashboard-btn"
           >
             Back to Dashboard
@@ -389,8 +341,8 @@ const ProviderPurchaseForm: React.FC<ProviderPurchaseFormProps> = ({
               size="md"
               onClick={handleContinue}
               disabled={
-                (currentStep === 1 && !isStep1Valid()) ||
-                (currentStep === 2 && !isStep2Valid())
+                (currentStep === 1 && !isStepValid(1)) ||
+                (currentStep === 2 && !isStepValid(2))
               }
             >
               {currentStep === 1 ? "Continue" : "Confirm & Pay"}

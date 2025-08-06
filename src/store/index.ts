@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-
-// Create a dummy reducer to satisfy configureStore requirements
-const dummyReducer = (state = {}, action: { type: string }) => state;
+import providerPurchaseFormReducer from "./slices/providerPurchaseFormSlice";
 
 export const store = configureStore({
   reducer: {
-    dummy: dummyReducer,
+    providerPurchaseForm: providerPurchaseFormReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
