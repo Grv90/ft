@@ -1,0 +1,126 @@
+@import "../styles/design-system";
+
+.landing-page {
+  display: flex;
+  height: 100vh;
+  font-family: $font-family-base;
+  overflow: hidden;
+}
+
+.landing-page__left {
+  flex: 0 0 45%;
+  background: linear-gradient(135deg, #066BE4 0%, #0056b3 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: $spacing-xl;
+  position: relative;
+}
+
+.landing-page__right {
+  flex: 0 0 55%;
+  background: white;
+  color: $text-primary;
+  display: flex;
+  align-items: center;
+  padding: $spacing-xl;
+}
+
+.landing-page__content {
+  width: 100%;
+  max-width: 600px;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.landing-page__interactive {
+  margin-bottom: $spacing-xl;
+}
+
+.landing-page__button-group {
+  display: flex;
+  gap: $spacing-xxl;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.landing-page__button-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-sm;
+  flex: 1;
+}
+
+.landing-page__button-title {
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  color: $text-primary;
+  margin: 0;
+}
+
+.landing-page__button {
+  background: $primary-blue;
+  color: white;
+  border: none;
+  padding: $spacing-lg;
+  cursor: pointer;
+  transition: all $transition-normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  min-height: 48px;
+  text-decoration: none;
+  
+  &:hover {
+    background: $primary-blue-hover;
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+    color: white;
+    text-decoration: none;
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:visited {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .landing-page {
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .landing-page__left,
+  .landing-page__right {
+    flex: 1;
+    padding: $spacing-lg;
+    overflow-y: auto;
+  }
+  
+  .landing-page__button-group {
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-page__left,
+  .landing-page__right {
+    padding: $spacing-md;
+  }
+  
+  .landing-page__content {
+    max-width: 100%;
+  }
+} 

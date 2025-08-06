@@ -1,23 +1,23 @@
 "use client";
 
 import React from "react";
-import Button from "../../components/Button/Button";
-import PriceBox from "../../components/PriceBox/PriceBox";
-import Chip from "../../components/Chip/Chip";
-import DatePickerInput from "../../components/DatePickerInput/DatePickerInput";
-import DropdownInput from "../../components/DropdownInput/DropdownInput";
-import TextInput from "../../components/TextInput/TextInput";
-import TextAreaInput from "../../components/TextAreaInput/TextAreaInput";
+import Button from "../../../components/Button/Button";
+import PriceBox from "../../../components/PriceBox/PriceBox";
+import Chip from "../../../components/Chip/Chip";
+import DatePickerInput from "../../../components/DatePickerInput/DatePickerInput";
+import DropdownInput from "../../../components/DropdownInput/DropdownInput";
+import TextInput from "../../../components/TextInput/TextInput";
+import TextAreaInput from "../../../components/TextAreaInput/TextAreaInput";
 import {
   Table,
   TableRow,
   TableHeader,
   TableCell,
-} from "../../components/Table";
-import { Card } from "../../components/Card";
-import { ArrowIcon } from "../../components/Icons";
-import Navbar from "../../components/Navbar/Navbar";
-import "../../components/Typography/Typography.scss";
+} from "../../../components/Table";
+import { Card } from "../../../components/Card";
+import { ArrowIcon } from "../../../components/Icons";
+import Navbar from "../../../components/Navbar/Navbar";
+import "../../../components/Typography/Typography.scss";
 import "./page.scss";
 
 export default function DesignSystemPage() {

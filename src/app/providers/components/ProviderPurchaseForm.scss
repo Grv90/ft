@@ -1,4 +1,4 @@
-@import "../../../styles/tokens";
+@import "../../../styles/design-system";
 
 .provider-purchase-form {
   display: flex;
@@ -37,6 +37,13 @@
       font-weight: 400;
       color: $neutral-0;
     }
+  }
+
+  &__error {
+    color: $red-0;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: $spacing-xs;
   }
 
   &__chips {

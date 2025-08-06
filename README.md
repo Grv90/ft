@@ -1,8 +1,86 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Provider Management System
 
-## Getting Started
+A modern Next.js application for managing internet service providers with a comprehensive design system.
 
-First, run the development server:
+## 🚀 Features
+
+- **Provider Management**: Browse and compare internet service providers
+- **Design System**: Complete component library with documentation
+- **Modern UI**: Built with SCSS and custom design tokens
+- **API Integration**: RESTful API with mock data
+- **Responsive Design**: Mobile-first approach
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── providers/              # 📋 Provider management feature
+│   │   ├── components/         # Provider-specific components
+│   │   ├── hooks/             # Custom React hooks
+│   │   ├── images/            # Provider logos and assets
+│   │   └── page.tsx           # Provider list page
+│   ├── tools/
+│   │   └── design-system/     # 🎨 Design system documentation
+│   ├── api/                   # 🔌 API routes
+│   │   └── providers/
+│   │       └── route.ts       # Provider API endpoints
+│   └── layout.tsx             # 📄 Root layout
+├── components/                # 🧩 Shared UI components
+│   ├── Button/
+│   ├── Card/
+│   ├── Chip/
+│   ├── Input/
+│   ├── Navbar/
+│   └── ...
+├── styles/                    # 🎨 Design system
+│   ├── _design-system.scss    # Single entry point for all styles
+│   ├── _tokens.scss          # Design tokens
+│   ├── _variables.scss       # Design variables
+│   ├── _mixins.scss          # Utility mixins
+│   └── main.scss             # Main stylesheet
+├── lib/                      # 📚 Shared utilities
+│   ├── services/             # API services
+│   ├── types/                # TypeScript types
+│   └── utils/                # Utility functions
+└── store/                    # 🗄️ State management
+    ├── slices/               # Redux slices
+    └── hooks/                # Redux hooks
+```
+
+## 🎯 Key URLs
+
+- **Home**: `/` - Frontend Developer Challenge Landing Page with "Providers" and "Design System" buttons
+- **Providers**: `/providers` - Provider Management Feature
+- **Design System**: `/tools/design-system` - Component Documentation
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd ft
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Start the development server:
 
 ```bash
 npm run dev
@@ -10,27 +88,88 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎨 Design System
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The project includes a comprehensive design system with:
 
-## Learn More
+- **Typography**: Consistent font scales and weights
+- **Colors**: Semantic color palette with CSS custom properties
+- **Spacing**: Systematic spacing scale
+- **Components**: Reusable UI components
+- **Documentation**: Live design system at `/tools/design-system`
 
-To learn more about Next.js, take a look at the following resources:
+### Using Design System Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Import the design system in any SCSS file:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```scss
+@import "../../styles/design-system";
 
-## Deploy on Vercel
+.my-component {
+  padding: $spacing-md;
+  color: $text-primary;
+  font-size: $font-size-base;
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔌 API
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The application includes a RESTful API with mock data:
+
+- `GET /api/providers` - Fetch all providers
+- Mock data includes provider details, pricing, and features
+
+## 🧩 Components
+
+### Core Components
+
+- **Button**: Multiple variants (primary, secondary, subtle)
+- **Card**: Flexible content containers
+- **Chip**: Status and category indicators
+- **Input**: Text, dropdown, and date picker inputs
+- **Navbar**: Navigation header
+- **Table**: Data display component
+
+### Provider Components
+
+- **ProvidersList**: Main provider listing
+- **ProviderPurchaseForm**: Purchase workflow
+- **ProviderOverlay**: Modal overlays
+
+## 🗄️ State Management
+
+Uses Redux Toolkit for state management:
+
+- Provider purchase form state
+- UI state management
+- API data caching
+
+## 📱 Responsive Design
+
+Built with mobile-first approach using:
+
+- CSS Grid and Flexbox
+- Responsive breakpoints
+- Touch-friendly interactions
+
+### Available Scripts
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+npm run type-check   # Run TypeScript checks
+```
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+Built with ❤️ using Next.js

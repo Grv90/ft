@@ -37,9 +37,6 @@ export interface ProviderPurchaseFormState {
   // Loading states
   loadingState: "connecting" | "retrieving" | "form";
 
-  // Validation
-  errors: Partial<Record<keyof ProviderPurchaseFormData, string>>;
-
   // Feedback modal
   showFeedbackModal: boolean;
 }
@@ -63,7 +60,6 @@ const initialState: ProviderPurchaseFormState = {
   isFormOpen: false,
   selectedProvider: null,
   loadingState: "connecting",
-  errors: {},
   showFeedbackModal: false,
 };
 
@@ -85,16 +81,11 @@ const providerPurchaseFormSlice = createSlice({
       } else {
         state.formData[field] = value as string;
       }
-      // Clear error for this field when user starts typing
-      if (state.errors[field]) {
-        delete state.errors[field];
-      }
     },
 
     resetForm: (state) => {
       state.formData = initialState.formData;
       state.currentStep = 1;
-      state.errors = {};
     },
 
     // Form flow actions
@@ -115,7 +106,6 @@ const providerPurchaseFormSlice = createSlice({
       state.selectedProvider = null;
       state.currentStep = 1;
       state.loadingState = "connecting";
-      state.errors = {};
     },
 
     nextStep: (state) => {
@@ -142,25 +132,6 @@ const providerPurchaseFormSlice = createSlice({
       state.loadingState = action.payload;
     },
 
-    // Validation actions
-    setFieldError: (
-      state,
-      action: PayloadAction<{
-        field: keyof ProviderPurchaseFormData;
-        error: string;
-      }>
-    ) => {
-      const { field, error } = action.payload;
-      state.errors[field] = error;
-    },
-
-    clearFieldError: (
-      state,
-      action: PayloadAction<keyof ProviderPurchaseFormData>
-    ) => {
-      delete state.errors[action.payload];
-    },
-
     // Feedback modal actions
     showFeedbackModal: (state) => {
       state.showFeedbackModal = true;
@@ -176,7 +147,6 @@ const providerPurchaseFormSlice = createSlice({
       state.selectedProvider = null;
       state.currentStep = 1;
       state.loadingState = "connecting";
-      state.errors = {};
       state.showFeedbackModal = true;
       // Reset form data to initial state
       state.formData = initialState.formData;
@@ -193,8 +163,6 @@ export const {
   previousStep,
   setStep,
   setLoadingState,
-  setFieldError,
-  clearFieldError,
   showFeedbackModal,
   hideFeedbackModal,
   completeForm,

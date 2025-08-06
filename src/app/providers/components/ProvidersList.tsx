@@ -1,5 +1,9 @@
 import React from "react";
-import { CheckmarkIcon, XMarkIcon, ArrowIcon } from "../../../components/Icons";
+import {
+  CheckmarkIcon,
+  XMarkIcon,
+  ArrowIcon,
+} from "../../../components/Icons";
 import Button from "../../../components/Button/Button";
 import Chip from "../../../components/Chip/Chip";
 import {

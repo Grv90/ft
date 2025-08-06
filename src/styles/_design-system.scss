@@ -1,0 +1,10 @@
+// Design System - Single Import File
+// ==========================================
+
+// Import all design system files
+@import "tokens";
+@import "variables";
+@import "mixins";
+
+// This file serves as the single entry point for all design system imports
+// Usage: @import "../../styles/design-system"; 

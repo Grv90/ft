@@ -5,16 +5,11 @@ import DropdownInput from "../../../components/DropdownInput/DropdownInput";
 import DatePickerInput from "../../../components/DatePickerInput/DatePickerInput";
 import Chip from "../../../components/Chip/Chip";
 import "./ProviderPurchaseForm.scss";
-import {
-  useProviderPurchaseFormState,
-  useProviderPurchaseFormValidation,
-} from "../../../store/hooks/useProviderPurchaseFormState";
-import type { ProviderPurchaseFormData } from "../../../store/slices/providerPurchaseFormSlice";
-
-export type FormData = ProviderPurchaseFormData;
+import { useProviderPurchaseForm } from "../hooks/useProviderPurchaseForm";
+import type { ProviderPurchaseFormData } from "../../../../store/slices/providerPurchaseFormSlice";
 
 export interface ProviderPurchaseFormProps {
-  onContinue: (formData: FormData) => void;
+  onContinue: (formData: ProviderPurchaseFormData) => void;
   onCancel: () => void;
 }
 
@@ -25,14 +20,11 @@ const ProviderPurchaseForm: React.FC<ProviderPurchaseFormProps> = ({
   const {
     formData,
     currentStep,
-    selectedProvider: provider,
-    updateField,
-    next,
-    previous,
-    setStep,
-  } = useProviderPurchaseFormState();
-
-  const { isStepValid, errors } = useProviderPurchaseFormValidation();
+    provider,
+    updateFormField,
+    handleContinue,
+    handleBack,
+  } = useProviderPurchaseForm();
 
   const contractStartDate = "10/10/2025"; // This could be moved to Redux state if needed
 
@@ -46,13 +38,16 @@ const ProviderPurchaseForm: React.FC<ProviderPurchaseFormProps> = ({
   const routerOptions = ["Yes", "No"];
 
   const handleInputChange = (
-    field: keyof FormData,
+    field: keyof ProviderPurchaseFormData,
     value: string | string[]
   ) => {
-    updateField(field, value);
+    updateFormField(field, value);
   };
 
-  const handleChipToggle = (field: keyof FormData, value: string) => {
+  const handleChipToggle = (
+    field: keyof ProviderPurchaseFormData,
+    value: string
+  ) => {
     const currentValues = Array.isArray(formData[field])
       ? (formData[field] as string[])
       : [];
@@ -60,27 +55,14 @@ const ProviderPurchaseForm: React.FC<ProviderPurchaseFormProps> = ({
       ? currentValues.filter((v) => v !== value)
       : [...currentValues, value];
 
-    updateField(field, newValues);
+    updateFormField(field, newValues);
   };
 
-  const handleSingleChipSelect = (field: keyof FormData, value: string) => {
-    updateField(field, value);
-  };
-
-  const handleContinue = () => {
-    if (currentStep === 1 && isStepValid(1)) {
-      next();
-    } else if (currentStep === 2 && isStepValid(2)) {
-      next();
-    }
-  };
-
-  const handleBack = () => {
-    if (currentStep === 2) {
-      previous();
-    } else if (currentStep === 3) {
-      previous();
-    }
+  const handleSingleChipSelect = (
+    field: keyof ProviderPurchaseFormData,
+    value: string
+  ) => {
+    updateFormField(field, value);
   };
 
   return (
@@ -336,15 +318,7 @@ const ProviderPurchaseForm: React.FC<ProviderPurchaseFormProps> = ({
             <Button variant="subtle" size="md" onClick={onCancel}>
               Cancel
             </Button>
-            <Button
-              variant="primary"
-              size="md"
-              onClick={handleContinue}
-              disabled={
-                (currentStep === 1 && !isStepValid(1)) ||
-                (currentStep === 2 && !isStepValid(2))
-              }
-            >
+            <Button variant="primary" size="md" onClick={handleContinue}>
               {currentStep === 1 ? "Continue" : "Confirm & Pay"}
             </Button>
           </div>
